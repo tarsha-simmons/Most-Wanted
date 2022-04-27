@@ -221,3 +221,25 @@ function findPersonFamily(person, people){
     }))
     return familyMembers
 }
+function findPersonDescendants(person, people){
+    let children = []
+    let grandChildren = []
+    children = people.filter(function(el){
+        if (el.parents.includes(person.id)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    children.forEach(function(child){grandChildren = (
+        people.filter(function(el){
+            if (el.parents.includes(child.id)){
+                return true;
+            }
+            else{
+                return false;
+            }
+        })
+    )})}
+let descendants
