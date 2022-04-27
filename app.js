@@ -104,7 +104,6 @@ function mainMenu(person, people) {
 function searchByName(people) {
     let firstName = promptFor("What is the person's first name?", chars);
     let lastName = promptFor("What is the person's last name?", chars);
-
     // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
     let foundPerson = people.filter(function (person) {
         if (person.firstName === firstName && person.lastName === lastName) {
@@ -184,3 +183,41 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+function findPersonFamily(person, people){
+    let parentsList = people.filter(function(el){
+        if (person.parents.includes(el.id))
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let siblingList = people.filter(function(el){
+        if (el.parents.includes(person.parents))
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let spouse = people.filter(function(el){
+        if (el.id === (person.currentSpouse)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let familyMembers = spouse.map(function(el){
+        return `${el.firstName} ${el.lastName} -Spouse\n`
+    })
+    familyMembers.push(siblingList.map(function(el){
+        return `${el.firstName} ${ele.lastName} -Sibling\n`
+    }))
+    familyMembers.push(parentsList.map(function(el){
+        return `${el.firstName} ${el.lastName} -Parent\n`
+    }))
+    return familyMembers
+}
