@@ -197,7 +197,7 @@ function findPersonParents(person, people)
     let parents = result.map(function(el){
         return `${el.firstName} ${el.lastName}\n`;
       });
-     return parents;
+     return parentList;
     }
   }
 
@@ -213,7 +213,7 @@ function findPersonSpouse(person, people)
     let spouse = result.map(function(el){
          return `${el.firstName} ${el.lastName}\n`;
     });
-    return spouse;
+    return spouseList;
 }}
 
 function findPersonSiblings(person, people) {
@@ -249,7 +249,23 @@ function findPersonSiblings(person, people) {
     return totalFamily;
 
   }
-  function findPersonDescendants(person, people){
+  function displayFam(person, people){
+    let spouse = findPersonSpouse(person, people);
+    let parents = findPersonParents(person, people);
+    let siblings = findPersonSiblings(person,people);
+    let spouseMap = spouse.map(function(el){
+        return `${person.firstName}'s spouse is ${el.firstName} ${el.lastName}.\n`;
+    });
+    let parentsMap = parents.map(function(el){
+        return `One of their parents is ${el.firstName} ${el.lastName}.\n`;
+    });
+    let siblingsMap = siblings.map(function(el){
+        return `One of their siblings is ${el.firstName} ${el.lastName}.\n`;
+    });
+    return spouseMap + parentsMap + siblingsMap;
+}
+
+function findPersonDescendants(person, people){
     let descendantList = people.filter(function(el){
         if (el.parents.includes(person.id)) {
             return true;
