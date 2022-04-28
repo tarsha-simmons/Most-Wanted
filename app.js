@@ -183,63 +183,36 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
-function findPersonFamily(person, people){
-    let parentsList = people.filter(function(el){
-        if (person.parents.includes(el.id))
-        {
+function findPersonSpouse(person, people){
+    let spouseList = people.filter(function(el){
+        if (el.currentSpouse === person.id) {
             return true;
         }
         else{
             return false;
-        }
-    })
-    let siblingList = people.filter(function(el){
-        if (el.parents.includes(person.parents))
-        {
-            return true;
-        }
-        else{
-            return false;
-        }
-    })
-    let spouse = people.filter(function(el){
-        if (el.id === (person.currentSpouse)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    })
-    let familyMembers = spouse.map(function(el){
-        return `${el.firstName} ${el.lastName} -Spouse\n`
-    })
-    familyMembers.push(siblingList.map(function(el){
-        return `${el.firstName} ${ele.lastName} -Sibling\n`
-    }))
-    familyMembers.push(parentsList.map(function(el){
-        return `${el.firstName} ${el.lastName} -Parent\n`
-    }))
-    return familyMembers
+        }});
+    return spouseList;
 }
-function findPersonDescendants(person, people){
-    let children = []
-    let grandChildren = []
-    children = people.filter(function(el){
-        if (el.parents.includes(person.id)){
+
+function findPersonParents(person, people){
+    let parentList = people.filter(function(el){
+        if (person.parents.length > 0 && person.parents.includes(el.id)) {
             return true;
         }
         else{
             return false;
+        }});
+    return parentList;
+}
+
+function findPersonSiblings(person, people){
+    let siblingList = people.filter(function(el){
+        if (person !== el) {
+        if (person.parents.length > 0 && person.parents.toString() === el.parents.toString()) {
+            return true;
         }
-    })
-    children.forEach(function(child){grandChildren = (
-        people.filter(function(el){
-            if (el.parents.includes(child.id)){
-                return true;
-            }
-            else{
-                return false;
-            }
-        })
-    )})}
-let descendants
+        else{
+            return false;
+        }}});
+    return siblingList;
+}
