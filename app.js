@@ -295,4 +295,25 @@ function searchByTraits(people){
         .join("\n"))
      traitChoose = prompt('keep choosing? yes or no: ')
      break;
+   
+     case "Occupation":
+        let traitOccupation = promptFor('Enter Occupation or skip: ', chars)
+        people = people.filter(function (el){
+            if(el.occupation == traitOccupation)
+                return true;
+        })
+        alert(people.map(function (person){
+            return `${person.firstName} ${person.lastName}`;
+            })
+            .join("\n"))
     
+            traitChoose = prompt('keep choosing? yes or no: ')
+            break;
+
+
+    case "DOB":
+     let traitDob = promptFor('Enter Date of Birth MM/DD/YEAR or skip: ', chars)
+        people = people.filter(function (el){
+          if (el.dob == traitDob)
+          return true;
+    })
