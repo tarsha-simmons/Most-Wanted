@@ -183,22 +183,20 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
-function findPersonFamily(person, people){
-    let spouse = findPersonSpouse(person, people);
-    let parents = findPersonParents(person, people);
-    let siblings = findPersonSiblings(person,people);
-    let spouseMap = spouse.map(function(el){
-        return `${person.firstName}'s spouse is ${el.firstName} ${el.lastName}.\n`;
-    });
-    let parentsMap = parents.map(function(el){
-        return `One of their parents is ${el.firstName} ${el.lastName}.\n`;
-    });
-    let siblingsMap = siblings.map(function(el){
-        return `One of their siblings is ${el.firstName} ${el.lastName}.\n`;
-    });
-    return spouseMap + parentsMap + siblingsMap;
+function findPersonFamily(person, people) {
+    let totalFamily = " ";
 
-}
+    let spouse = findPersonSpouse(person, people);
+    totalFamily += `Spouse:\n${spouse}\n`;
+
+    let parent = findPersonParents(person, people);
+    totalFamily += `Parents:\n${parent}\n`;
+
+    let sibling = findPersonSiblings(person, people);
+    totalFamily += `Siblings:\n${sibling}\n`;
+    return totalFamily;
+
+  }
 function findPersonParents(person, people)
 {
     let parentList = people.filter(function(el){
@@ -229,3 +227,23 @@ function findPersonSpouse(person, people)
          return `${el.firstName} ${el.lastName}\n`;
     });
     return spouse;
+}}
+
+function findPersonSiblings(person, people) {
+    if (person.parents.length > 0) {
+      let result = people.filter(function (el) {
+        if (person.id !== el.id && person.parents[0] === el.parents[0])
+          return true;
+      });
+      if (result.length == 0) {
+        return "No siblings in the system\n";
+      } else {
+        let sibling = result.map(function (el) {
+          return `${el.firstName} ${el.lastName}`;
+        });
+        return sibling;
+      }
+    } else {
+      return "No siblings in the system\n";
+    }
+  }
