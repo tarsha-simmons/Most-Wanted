@@ -193,42 +193,39 @@ function findPersonFamily(person, people){
     let parentsMap = parents.map(function(el){
         return `One of their parents is ${el.firstName} ${el.lastName}.\n`;
     });
-    let siblingMap = siblings.map(function(el){
+    let siblingsMap = siblings.map(function(el){
         return `One of their siblings is ${el.firstName} ${el.lastName}.\n`;
     });
-    return spouseMap + parentsMap + siblingMap;
-}
+    return spouseMap + parentsMap + siblingsMap;
 
-function findPersonSpouse(person, people){
+}
+function findPersonParents(person, people)
+{
+    let parentList = people.filter(function(el){
+    
+      if (el.currentParents === person.id) 
+      return true;
+    });
+    if (result.length == 0) {
+      return "No parents in the system";
+    } else {
+    let parents = result.map(function(el){
+        return `${el.firstName} ${el.lastName}\n`;
+      });
+     return parent;
+    }
+  }
+
+function findPersonSpouse(person, people)
+{
     let spouseList = people.filter(function(el){
         if (el.currentSpouse === person.id) {
-            return true;
+        return true;
         }
-        else{
-            return false;
-        }});
-    return spouseList;
-}
-
-function findPersonParents(person, people){
-    let parentList = people.filter(function(el){
-        if (person.parents.length > 0 && person.parents.includes(el.id)) {
-            return true;
-        }
-        else{
-            return false;
-        }});
-    return parentList;
-}
-
-function findPersonSiblings(person, people){
-    let siblingList = people.filter(function(el){
-        if (person !== el) {
-        if (person.parents.length > 0 && person.parents.toString() === el.parents.toString()) {
-            return true;
-        }
-        else{
-            return false;
-        }}});
-    return siblingList;
-}
+        if (result.length == 0) {
+        return "No spouse in the system";
+          } else {
+    let spouse = result.map(function(el){
+         return `${el.firstName} ${el.lastName}\n`;
+    });
+    return spouse;
