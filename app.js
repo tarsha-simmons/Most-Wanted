@@ -210,7 +210,7 @@ function findPersonParents(person, people)
     let parents = result.map(function(el){
         return `${el.firstName} ${el.lastName}\n`;
       });
-     return parent;
+     return parents;
     }
   }
 
@@ -247,3 +247,13 @@ function findPersonSiblings(person, people) {
       return "No siblings in the system\n";
     }
   }
+  function findPersonDescendants(person, people){
+    let descendantList = people.filter(function(el){
+        if (el.parents.includes(person.id)) {
+            return true;
+        }
+        else{
+            return false;
+        }});
+    return descendantList;
+}
