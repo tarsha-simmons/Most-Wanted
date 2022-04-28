@@ -265,7 +265,7 @@ function displayPersonDescendants(person, people){
 function searchByTraits(people){
     let traitChoose = prompt('Search by trait? yes or no: ')
     while(traitChoose = 'yes'){
-    let optionsForTraits = prompt('Search by: Gender, Eye Color, Occupation, DOB, Weight, Height: ')
+    let optionsForTraits = prompt('Search by: Gender, DOB, Height, Weight, Eye Color, Occupation: ')
     switch (optionsForTraits){
         case "Gender":
             let traitGender = promptFor('Gender: ', chars)
@@ -274,4 +274,12 @@ function searchByTraits(people){
                     return true;
             }  
             })
+            alert(people.map(function (person){
+                return `${person.firstName} ${person.lastName}`;
+                })
+                .join("\n"))
+            traitChoose = prompt('keep choosing? yes or no: ')
+            
+            break;
+
      
