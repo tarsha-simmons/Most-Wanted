@@ -227,22 +227,8 @@ function findPersonSiblings(person, people){
         }}});
     return siblingList;
 }
-
-  function findPersonFamily(person, people) {
-    let totalFamily = " ";
-
-    let spouse = findPersonSpouse(person, people);
-    totalFamily += `Spouse:\n${spouse}\n`;
-
-    let parent = findPersonParents(person, people);
-    totalFamily += `Parents:\n${parent}\n`;
-
-    let sibling = findPersonSiblings(person, people);
-    totalFamily += `Siblings:\n${sibling}\n`;
-    return totalFamily;
-
   }
-  function displayFam(person, people){
+  function displayFamiily(person, people){
     let spouse = findPersonSpouse(person, people);
     let parents = findPersonParents(person, people);
     let siblings = findPersonSiblings(person,people);
