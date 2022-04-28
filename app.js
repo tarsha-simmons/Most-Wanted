@@ -183,20 +183,7 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
-function findPersonFamily(person, people) {
-    let totalFamily = " ";
 
-    let spouse = findPersonSpouse(person, people);
-    totalFamily += `Spouse:\n${spouse}\n`;
-
-    let parent = findPersonParents(person, people);
-    totalFamily += `Parents:\n${parent}\n`;
-
-    let sibling = findPersonSiblings(person, people);
-    totalFamily += `Siblings:\n${sibling}\n`;
-    return totalFamily;
-
-  }
 function findPersonParents(person, people)
 {
     let parentList = people.filter(function(el){
@@ -246,6 +233,21 @@ function findPersonSiblings(person, people) {
     } else {
       return "No siblings in the system\n";
     }
+  }
+
+  function findPersonFamily(person, people) {
+    let totalFamily = " ";
+
+    let spouse = findPersonSpouse(person, people);
+    totalFamily += `Spouse:\n${spouse}\n`;
+
+    let parent = findPersonParents(person, people);
+    totalFamily += `Parents:\n${parent}\n`;
+
+    let sibling = findPersonSiblings(person, people);
+    totalFamily += `Siblings:\n${sibling}\n`;
+    return totalFamily;
+
   }
   function findPersonDescendants(person, people){
     let descendantList = people.filter(function(el){
