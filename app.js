@@ -216,24 +216,17 @@ function findPersonSpouse(person, people)
     return spouseList;
 }}
 
-function findPersonSiblings(person, people) {
-    if (person.parents.length > 0) {
-      let result = people.filter(function (el) {
-        if (person.id !== el.id && person.parents[0] === el.parents[0])
-          return true;
-      });
-      if (result.length == 0) {
-        return "No siblings in the system\n";
-      } else {
-        let sibling = result.map(function (el) {
-          return `${el.firstName} ${el.lastName}`;
-        });
-        return sibling;
-      }
-    } else {
-      return "No siblings in the system\n";
-    }
-  }
+function findPersonSiblings(person, people){
+    let siblingList = people.filter(function(el){
+        if (person !== el) {
+        if (person.parents.length > 0 && person.parents.toString() === el.parents.toString()) {
+            return true;
+        }
+        else{
+            return false;
+        }}});
+    return siblingList;
+}
 
   function findPersonFamily(person, people) {
     let totalFamily = " ";
