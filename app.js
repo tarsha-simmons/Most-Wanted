@@ -262,3 +262,16 @@ function displayPersonDescendants(person, people){
     });
     return descendantsMap;      
 }
+function searchByTraits(people){
+    let traitChoose = prompt('Search by trait? yes or no: ')
+    while(traitChoose = 'yes'){
+    let optionsForTraits = prompt('Search by: Gender, Eye Color, Occupation, DOB, Weight, Height: ')
+    switch (optionsForTraits){
+        case "Gender":
+            let traitGender = promptFor('Gender: ', chars)
+            people = people.filter(function (el){
+                if(el.gender == traitGender){
+                    return true;
+            }  
+            })
+     
