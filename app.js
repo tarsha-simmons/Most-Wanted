@@ -200,7 +200,18 @@ function findPersonParents(person, people)
      return parentList;
     }
   }
-
+  function findPersonSiblings(person, people){
+    let siblingList = people.filter(function(el){
+        if (person !== el) {
+        if (person.parents.length > 0 && person.parents.toString() === el.parents.toString()) {
+            return true;
+        }
+        else{
+            return false;
+        }}});
+    return siblingList;
+}
+  
 function findPersonSpouse(person, people)
 {
     let spouseList = people.filter(function(el){
@@ -216,19 +227,7 @@ function findPersonSpouse(person, people)
     return spouseList;
 }}
 
-function findPersonSiblings(person, people){
-    let siblingList = people.filter(function(el){
-        if (person !== el) {
-        if (person.parents.length > 0 && person.parents.toString() === el.parents.toString()) {
-            return true;
-        }
-        else{
-            return false;
-        }}});
-    return siblingList;
-}
-  }
-  function displayFamiily(person, people){
+function displayFamiily(person, people){
     let spouse = findPersonSpouse(person, people);
     let parents = findPersonParents(person, people);
     let siblings = findPersonSiblings(person,people);
@@ -352,7 +351,7 @@ case "Height":
                 traitChoose = prompt('keep choosing? yes or no: ')
                 break;
         default:
-            treatChoose = prompt('End search')
+            traitChoose = prompt('End search')
             return searchByTraits
 }
   
